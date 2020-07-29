@@ -1,0 +1,282 @@
+#: import CheckBox kivy.uix.checkbox
+
+
+<FeatureCheckBox@CheckBox>:
+    size_hint_x: .1
+
+<FeatureLabel@Label>:
+    font_size: 16
+    color: 1, 1, 1, 1
+    size_hint_x: .3
+
+<FeatureInnerBoxLayout@BoxLayout>:
+    orientation: "horizontal"
+    size_hint_x: .6
+    spacing: 5
+
+<FeatureBoxLayout@BoxLayout>:
+    orientation: "horizontal"
+    spacing: 5
+
+<GroupBoxLayout@BoxLayout>:
+    orientation: "horizontal"
+
+<QuantativeSpinner@Spinner>:
+    text_autoupdate: True
+    values: 'More than', 'Less than', 'Equally'
+
+<UnitLabel@Label>:
+    size_hint_x: .3
+
+<ParametersController>:
+    priceCheckbox: priceCheckbox
+    brandCheckbox: brandCheckbox
+    osCheckbox: osCheckbox
+    memoryCheckbox: memoryCheckbox
+    ramCheckbox: ramCheckbox
+    cpuCheckbox: cpuCheckbox
+    cameraCheckbox: cameraCheckbox
+    weightCheckbox: weightCheckbox
+    batteryCheckbox: batteryCheckbox
+    diagonalCheckbox: diagonalCheckbox
+    sdCheckbox: sdCheckbox
+    bluetoothCheckbox: bluetoothCheckbox
+    gpsCheckbox: gpsCheckbox
+    wifiCheckbox: wifiCheckbox
+
+    priceSlider: priceSlider
+    memorySlider: memorySlider
+    ramSlider: ramSlider
+    cpuSlider: cpuSlider
+    cameraSlider: cameraSlider
+    weightSlider: weightSlider
+    batterySlider: batterySlider
+    diagonalSlider: diagonalSlider
+
+    priceOperator: priceOperator
+    memoryOperator: memoryOperator
+    ramOperator: ramOperator
+    cpuOperator: cpuOperator
+    cameraOperator: cameraOperator
+    weightOperator: weightOperator
+    batteryOperator: batteryOperator
+    diagonalOperator: diagonalOperator
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 10
+        canvas:
+            Color:
+                rgb: .3, .3, .3, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Select your criteria"
+            font_size: 24
+            size_hint_y: .15
+
+        GridLayout:
+            cols: 1
+            rows: 11
+            size_hint_y: .75
+
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: priceCheckbox
+                FeatureLabel:
+                    text: "Price"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: priceOperator
+                    Slider:
+                        id: priceSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelPriceValue.text = str(int(self.value)) + " EUR"
+                    UnitLabel:
+                        id: labelPriceValue
+                        text: "0 EUR"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: brandCheckbox
+                FeatureLabel:
+                    text: "Brand"
+                FeatureInnerBoxLayout:
+
+
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: osCheckbox
+                FeatureLabel:
+                    text: "Operating system"
+                FeatureInnerBoxLayout:
+
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: memoryCheckbox
+                FeatureLabel:
+                    text: "Built-in memory"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: memoryOperator
+                    Slider:
+                        id: memorySlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelMemoryValue.text = str(int(self.value)) + " GB"
+                    UnitLabel:
+                        id: labelMemoryValue
+                        text: "0 GB"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: ramCheckbox
+                FeatureLabel:
+                    text: "RAM Memory"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: ramOperator
+                    Slider:
+                        id: ramSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelRAMValue.text = str(int(self.value)) + " GB"
+                    UnitLabel:
+                        id: labelRAMValue
+                        text: "0 GB"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: cpuCheckbox
+                FeatureLabel:
+                    text: "CPU"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: cpuOperator
+                    Slider:
+                        id: cpuSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelCPUValue.text = str(int(self.value)) + " "
+                    UnitLabel:
+                        id: labelCPUValue
+                        text: "0"
+                        size_hint_x: .1
+                    Spinner:
+                        text: 'GHz'
+                        values: 'GHz', 'nm'
+                        size_hint_x: .2
+                        on_value:
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: cameraCheckbox
+                FeatureLabel:
+                    text: "Camera"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: cameraOperator
+                    Slider:
+                        id: cameraSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelCameraValue.text = str(int(self.value)) + " mpix"
+                    UnitLabel:
+                        id: labelCameraValue
+                        text: "0 mpix"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: weightCheckbox
+                FeatureLabel:
+                    text: "Weight"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: weightOperator
+                    Slider:
+                        id: weightSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelWeightValue.text = str(int(self.value)) + " g"
+                    UnitLabel:
+                        id: labelWeightValue
+                        text: "0 g"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: batteryCheckbox
+                FeatureLabel:
+                    text: "Battery"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: batteryOperator
+                    Slider:
+                        id: batterySlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelBatteryValue.text = str(int(self.value)) + " mAh"
+                    UnitLabel:
+                        id: labelBatteryValue
+                        text: "0 mAh"
+            FeatureBoxLayout:
+                FeatureCheckBox:
+                    id: diagonalCheckbox
+                FeatureLabel:
+                    text: "Screen Diagonal"
+                FeatureInnerBoxLayout:
+                    QuantativeSpinner:
+                        id: diagonalOperator
+                    Slider:
+                        id: diagonalSlider
+                        min: 0
+                        max: 500
+                        step: 1
+                        orientation: 'horizontal'
+                        on_value: labelDiagonalValue.text = str(int(self.value)) + " cm"
+                    UnitLabel:
+                        id: labelDiagonalValue
+                        text: "0 cm"
+            BoxLayout:
+                orientation: "horizontal"
+                GroupBoxLayout:
+                    CheckBox:
+                        id: sdCheckbox
+                    Label:
+                        text: "SD Slot"
+                GroupBoxLayout:
+                    CheckBox:
+                        id: bluetoothCheckbox
+                    Label:
+                        text: "Bluetooth"
+                GroupBoxLayout:
+                    CheckBox:
+                        id: gpsCheckbox
+                    Label:
+                        text: "GPS"
+                GroupBoxLayout:
+                    CheckBox:
+                        id: wifiCheckbox
+                    Label:
+                        text: "Wi-Fi"
+
+        Button:
+            size_hint_y: .1
+            text: "Search"
+            on_release: root.search()
+
+
+
+
+
