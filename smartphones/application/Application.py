@@ -1,13 +1,9 @@
 import kivy
+
 kivy.require('1.9.0')
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.pagelayout import PageLayout
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 import clips_interface
@@ -40,9 +36,11 @@ class ParametersScreen(Screen):
             database.put_request_quantitative("request_memory", self.ids.memorySlider.value,
                                               operators[self.ids.memoryOperator.text])
         if self.ids.ramCheckbox.active:
-            database.put_request_quantitative("request_ram", self.ids.ramSlider.value, operators[self.ids.ramOperator.text])
+            database.put_request_quantitative("request_ram", self.ids.ramSlider.value,
+                                              operators[self.ids.ramOperator.text])
         if self.ids.cpuCheckbox.active:
-            database.put_request_quantitative("request_cpu", self.ids.cpuSlider.value, operators[self.ids.cpuOperator.text])
+            database.put_request_quantitative("request_cpu", self.ids.cpuSlider.value,
+                                              operators[self.ids.cpuOperator.text])
         if self.ids.cameraCheckbox.active:
             database.put_request_quantitative("request_camera", self.ids.cameraSlider.value,
                                               operators[self.ids.cameraOperator.text])
@@ -76,7 +74,7 @@ class ResultsScreen(Screen):
     def generate_result(self):
         print("Generate result")
         for i in range(100):
-            self.ids.space_for_result.add_widget(Button(text="Hello", size_hint_y=None, height=100 ))
+            self.ids.space_for_result.add_widget(Button(text="Hello", size_hint_y=None, height=100))
 
 
 class MyScreenManager(ScreenManager):
