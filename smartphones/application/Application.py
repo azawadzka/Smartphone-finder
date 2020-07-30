@@ -18,42 +18,6 @@ database = clips_interface.DataBase()
 class ParametersScreen(Screen):
     print("Display Parameters Controller")
 
-    # checkboxes
-    priceCheckbox = ObjectProperty()
-    brandCheckbox = ObjectProperty()
-    osCheckbox = ObjectProperty()
-    memoryCheckbox = ObjectProperty()
-    ramCheckbox = ObjectProperty()
-    cpuCheckbox = ObjectProperty()
-    cameraCheckbox = ObjectProperty()
-    weightCheckbox = ObjectProperty()
-    batteryCheckbox = ObjectProperty()
-    diagonalCheckbox = ObjectProperty()
-    sdCheckbox = ObjectProperty()
-    bluetoothCheckbox = ObjectProperty()
-    gpsCheckbox = ObjectProperty()
-    wifiCheckbox = ObjectProperty()
-
-    # sliders
-    priceSlider = ObjectProperty()
-    memorySlider = ObjectProperty()
-    ramSlider = ObjectProperty()
-    cpuSlider = ObjectProperty()
-    cameraSlider = ObjectProperty()
-    weightSlider = ObjectProperty()
-    batterySlider = ObjectProperty()
-    diagonalSlider = ObjectProperty()
-
-    # operators
-    priceOperator = ObjectProperty()
-    memoryOperator = ObjectProperty()
-    ramOperator = ObjectProperty()
-    cpuOperator = ObjectProperty()
-    cameraOperator = ObjectProperty()
-    weightOperator = ObjectProperty()
-    batteryOperator = ObjectProperty()
-    diagonalOperator = ObjectProperty()
-
     def process_query(self):
         self.search()
 
@@ -65,39 +29,39 @@ class ParametersScreen(Screen):
 
         operators = {"More than": "more_than", "Less than": "less_than", "Equally": "equal"}
 
-        if (self.priceCheckbox.active):
-            database.put_request_quantitative("request_price", self.priceSlider.value,
-                                              operators[self.priceOperator.text])
-        if (self.brandCheckbox.active):
+        if self.ids.priceCheckbox.active:
+            database.put_request_quantitative("request_price", self.ids.priceSlider.value,
+                                              operators[self.ids.priceOperator.text])
+        if self.ids.brandCheckbox.active:
             database.put_request_multivalue("request_brand", [])
-        if (self.osCheckbox.active):
+        if self.ids.osCheckbox.active:
             database.put_request_multivalue("request_operating_system", ["Android", "other"])
-        if (self.memoryCheckbox.active):
-            database.put_request_quantitative("request_memory", self.memorySlider.value,
-                                              operators[self.memoryOperator.text])
-        if (self.ramCheckbox.active):
-            database.put_request_quantitative("request_ram", self.ramSlider.value, operators[self.ramOperator.text])
-        if (self.cpuCheckbox.active):
-            database.put_request_quantitative("request_cpu", self.cpuSlider.value, operators[self.cpuOperator.text])
-        if (self.cameraCheckbox.active):
-            database.put_request_quantitative("request_camera", self.cameraSlider.value,
-                                              operators[self.cameraOperator.text])
-        if (self.weightCheckbox.active):
-            database.put_request_quantitative("request_weight", self.weightSlider.value,
-                                              operators[self.weightOperator.text])
-        if (self.batteryCheckbox.active):
-            database.put_request_quantitative("request_battery", self.batterySlider.value,
-                                              operators[self.batteryOperator.text])
-        if (self.diagonalCheckbox.active):
-            database.put_request_quantitative("request_screen_diagonal", self.diagonalSlider.value,
-                                              operators[self.diagonalOperator.text])
-        if (self.sdCheckbox.active):
+        if self.ids.memoryCheckbox.active:
+            database.put_request_quantitative("request_memory", self.ids.memorySlider.value,
+                                              operators[self.ids.memoryOperator.text])
+        if self.ids.ramCheckbox.active:
+            database.put_request_quantitative("request_ram", self.ids.ramSlider.value, operators[self.ids.ramOperator.text])
+        if self.ids.cpuCheckbox.active:
+            database.put_request_quantitative("request_cpu", self.ids.cpuSlider.value, operators[self.ids.cpuOperator.text])
+        if self.ids.cameraCheckbox.active:
+            database.put_request_quantitative("request_camera", self.ids.cameraSlider.value,
+                                              operators[self.ids.cameraOperator.text])
+        if self.ids.weightCheckbox.active:
+            database.put_request_quantitative("request_weight", self.ids.weightSlider.value,
+                                              operators[self.ids.weightOperator.text])
+        if self.ids.batteryCheckbox.active:
+            database.put_request_quantitative("request_battery", self.ids.batterySlider.value,
+                                              operators[self.ids.batteryOperator.text])
+        if self.ids.diagonalCheckbox.active:
+            database.put_request_quantitative("request_screen_diagonal", self.ids.diagonalSlider.value,
+                                              operators[self.ids.diagonalOperator.text])
+        if self.ids.sdCheckbox.active:
             database.put_request_binary("request_sd", 'n')
-        if (self.bluetoothCheckbox.active):
+        if self.ids.bluetoothCheckbox.active:
             database.put_request_binary("request_bluetooth", 'n')
-        if (self.gpsCheckbox.active):
+        if self.ids.gpsCheckbox.active:
             database.put_request_binary("request_gps", 'n')
-        if (self.wifiCheckbox.active):
+        if self.ids.wifiCheckbox.active:
             database.put_request_binary("request_wifi", 'n')
         database.run()
         # process effect
