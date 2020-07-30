@@ -1,5 +1,10 @@
 #: import CheckBox kivy.uix.checkbox
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
 
+MyScreenManager:
+    transition: FadeTransition()
+    ParametersScreen:
+    ResultsScreen:
 
 <FeatureCheckBox@CheckBox>:
     size_hint_x: .1
@@ -28,7 +33,9 @@
 <UnitLabel@Label>:
     size_hint_x: .3
 
-<ParametersController>:
+<ParametersScreen>:
+    name: "params"
+
     priceCheckbox: priceCheckbox
     brandCheckbox: brandCheckbox
     osCheckbox: osCheckbox
@@ -271,12 +278,41 @@
                     Label:
                         text: "Wi-Fi"
 
-        Button:
+        BoxLayout:
             size_hint_y: .1
-            text: "Search"
-            on_release: root.search()
+            Button:
+                size_hint_x: .2
+                text: "Reset"
+            Button:
+                text: "Search"
+                on_release:
+                    root.process_query()
+                    root.manager.get_screen("result").generate_result()
 
 
-
+<ResultsScreen>:
+    name: "result"
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: .3, .3, .3, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            text: "Return"
+            size_hint_y: .1
+            size_hint_x: .1
+            on_release: root.switch_to_params()
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                id: space_for_result
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
 
 

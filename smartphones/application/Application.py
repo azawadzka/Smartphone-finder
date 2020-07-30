@@ -1,10 +1,12 @@
 import kivy
 kivy.require('1.9.0')
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.pagelayout import PageLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 
@@ -13,7 +15,9 @@ import clips_interface
 database = clips_interface.DataBase()
 
 
-class ParametersController(Screen):
+class ParametersScreen(Screen):
+    print("Display Parameters Controller")
+
     # checkboxes
     priceCheckbox = ObjectProperty()
     brandCheckbox = ObjectProperty()
@@ -50,8 +54,14 @@ class ParametersController(Screen):
     batteryOperator = ObjectProperty()
     diagonalOperator = ObjectProperty()
 
+    def process_query(self):
+        self.search()
+
     def search(self):
         print("Search")
+
+        # go to result screen
+        self.manager.current = "result"
 
         operators = {"More than": "more_than", "Less than": "less_than", "Equally": "equal"}
 
@@ -94,11 +104,22 @@ class ParametersController(Screen):
         database.reset()
 
 
+class ResultsScreen(Screen):
+
+    def switch_to_params(self):
+        self.manager.current = "params"
+
+    def generate_result(self):
+        print("Generate result")
+        for i in range(100):
+            self.ids.space_for_result.add_widget(Button(text="Hello", size_hint_y=None, height=100 ))
+
+
+class MyScreenManager(ScreenManager):
+    pass
+
+
 class SmartphonesApp(App):
-
-    def getDatabase(self, database):
-        self.database = database
-
     def build(self):
-        self.app = ParametersController()
-        return self.app
+        view = Builder.load_file("smartphones.kv")
+        return view

@@ -1,10 +1,12 @@
 To do:
-- screen manager
+- ~~screen manager~~
 - droplists for OS and brand
 - results view
 - sliders ana params adjustments
 - web scraping automatization
 
+Optional 
+- add reset button
 
 Visual interface with Kivy and Kivy Garden
 
