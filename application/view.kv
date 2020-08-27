@@ -67,14 +67,14 @@ MyScreenManager:
                         id: priceOperator
                     Slider:
                         id: priceSlider
-                        min: 0
-                        max: 500
+                        min: root.ranges["min"]["price"]
+                        max: root.ranges["max"]["price"]
                         step: 1
                         orientation: 'horizontal'
-                        on_value: labelPriceValue.text = str(int(self.value)) + " EUR"
+                        on_value: labelPriceValue.text = "{:.0f} EUR".format(self.value)
                     UnitLabel:
                         id: labelPriceValue
-                        text: "0 EUR"
+                        text: "{:.0f} EUR".format(priceSlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: brandCheckbox
@@ -100,14 +100,14 @@ MyScreenManager:
                         id: memoryOperator
                     Slider:
                         id: memorySlider
-                        min: 0
-                        max: 500
+                        min: root.ranges["min"]["memory"]
+                        max: root.ranges["max"]["memory"]
                         step: 1
                         orientation: 'horizontal'
-                        on_value: labelMemoryValue.text = str(int(self.value)) + " GB"
+                        on_value: labelMemoryValue.text = "{:.0f} GB".format(self.value)
                     UnitLabel:
                         id: labelMemoryValue
-                        text: "0 GB"
+                        text: "{:.0f} GB".format(memorySlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: ramCheckbox
@@ -118,14 +118,14 @@ MyScreenManager:
                         id: ramOperator
                     Slider:
                         id: ramSlider
-                        min: 0
-                        max: 500
+                        min: root.ranges["min"]["ram"]
+                        max: root.ranges["max"]["ram"]
                         step: 1
                         orientation: 'horizontal'
-                        on_value: labelRAMValue.text = str(int(self.value)) + " GB"
+                        on_value: labelRAMValue.text = "{:.0f} GB".format(self.value)
                     UnitLabel:
                         id: labelRAMValue
-                        text: "0 GB"
+                        text: "{:.0f} GB".format(ramSlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: cpuCheckbox
@@ -136,11 +136,11 @@ MyScreenManager:
                         id: cpuOperator
                     Slider:
                         id: cpuSlider
-                        min: 0
-                        max: 500
-                        step: 1
+                        min: root.ranges["min"]["cpu"]
+                        max: root.ranges["max"]["cpu"]
+                        step: .1
                         orientation: 'horizontal'
-                        on_value: labelCPUValue.text = str(int(self.value)) + " "
+                        on_value: labelCPUValue.text = "{:.2f} ".format(self.value)
                     UnitLabel:
                         id: labelCPUValue
                         text: "0"
@@ -160,14 +160,14 @@ MyScreenManager:
                         id: cameraOperator
                     Slider:
                         id: cameraSlider
-                        min: 0
-                        max: 500
-                        step: 1
+                        min: root.ranges["min"]["camera"]
+                        max: root.ranges["max"]["camera"]
+                        step: .1
                         orientation: 'horizontal'
-                        on_value: labelCameraValue.text = str(int(self.value)) + " mpix"
+                        on_value: labelCameraValue.text = "{:.1f} mpix".format(self.value)
                     UnitLabel:
                         id: labelCameraValue
-                        text: "0 mpix"
+                        text: "{:.1f} mpix".format(cameraSlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: weightCheckbox
@@ -178,14 +178,14 @@ MyScreenManager:
                         id: weightOperator
                     Slider:
                         id: weightSlider
-                        min: 0
-                        max: 500
+                        min: root.ranges["min"]["weight"]
+                        max: root.ranges["max"]["weight"]
                         step: 1
                         orientation: 'horizontal'
-                        on_value: labelWeightValue.text = str(int(self.value)) + " g"
+                        on_value: labelWeightValue.text = "{:.0f} g".format(self.value)
                     UnitLabel:
                         id: labelWeightValue
-                        text: "0 g"
+                        text: "{:.0f} g".format(weightSlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: batteryCheckbox
@@ -196,14 +196,14 @@ MyScreenManager:
                         id: batteryOperator
                     Slider:
                         id: batterySlider
-                        min: 0
-                        max: 500
+                        min: root.ranges["min"]["battery"]
+                        max: root.ranges["max"]["battery"]
                         step: 1
                         orientation: 'horizontal'
-                        on_value: labelBatteryValue.text = str(int(self.value)) + " mAh"
+                        on_value: labelBatteryValue.text = "{:.0f} mAh".format(self.value)
                     UnitLabel:
                         id: labelBatteryValue
-                        text: "0 mAh"
+                        text: "{:.0f} mAh".format(batterySlider.value)
             FeatureBoxLayout:
                 FeatureCheckBox:
                     id: diagonalCheckbox
@@ -214,14 +214,14 @@ MyScreenManager:
                         id: diagonalOperator
                     Slider:
                         id: diagonalSlider
-                        min: 0
-                        max: 500
-                        step: 1
+                        min: root.ranges["min"]["diagonal"]
+                        max: root.ranges["max"]["diagonal"]
+                        step: .1
                         orientation: 'horizontal'
-                        on_value: labelDiagonalValue.text = str(int(self.value)) + " cm"
+                        on_value: labelDiagonalValue.text = "{:.1f} cm".format(self.value)
                     UnitLabel:
                         id: labelDiagonalValue
-                        text: "0 cm"
+                        text: "{:.1f} cm".format(diagonalSlider.value)
             BoxLayout:
                 orientation: "horizontal"
                 GroupBoxLayout:

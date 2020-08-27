@@ -1,3 +1,4 @@
+import pickle
 import kivy
 
 kivy.require('1.9.0')
@@ -12,15 +13,19 @@ database = clips_interface.DataBase()
 
 
 class ParametersScreen(Screen):
-    print("Display Parameters Controller")
+
+    def __init__(self, **kwargs):
+        super(ParametersScreen, self).__init__(**kwargs)
+        self.ranges = None
+        with open('..\data_processing\\border_values.pickle', 'rb') as handle:
+            self.ranges = pickle.load(handle)
+        assert self.ranges is not None
 
     def process_query(self):
         self.search()
 
     def search(self):
-        print("Search")
 
-        # go to result screen
         self.manager.current = "result"
 
         operators = {"More than": "more_than", "Less than": "less_than", "Equally": "equal"}
@@ -83,7 +88,7 @@ class MyScreenManager(ScreenManager):
 
 class SmartphonesApp(App):
     def build(self):
-        view = Builder.load_file("smartphones.kv")
+        view = Builder.load_file("view.kv")
         return view
 
 
