@@ -1,34 +1,37 @@
 #: import CheckBox kivy.uix.checkbox
-#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 MyScreenManager:
     transition: FadeTransition()
     ParametersScreen:
     ResultsScreen:
 
-<FeatureCheckBox@CheckBox>:
+<ParamCheckBox@CheckBox>:
     size_hint_x: .1
 
-<FeatureLabel@Label>:
+<ParamLabel@Label>:
     font_size: 16
     color: 1, 1, 1, 1
     size_hint_x: .3
 
-<FeatureInnerBoxLayout@BoxLayout>:
+<ParamInnerBox@BoxLayout>:
     orientation: "horizontal"
     size_hint_x: .6
     spacing: 5
 
-<FeatureBoxLayout@ClickableBoxLayout>:
+<ParamBox@ClickableBox>:
     orientation: "horizontal"
     spacing: 5
 
-<GroupBoxLayout@ClickableBoxLayout>:
+<GroupBox@ClickableBox>:
     orientation: "horizontal"
 
-<QuantativeSpinner@Spinner>:
+<ParamSpinner@Spinner>:
     text_autoupdate: True
     values: 'More than', 'Less than', 'Equally'
+
+<ParamSlider@Slider>:
+    orientation: 'horizontal'
 
 <UnitLabel@Label>:
     size_hint_x: .3
@@ -57,89 +60,85 @@ MyScreenManager:
             rows: 11
             size_hint_y: .75
 
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: priceCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Price"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: priceOperator
-                    Slider:
+                    ParamSlider:
                         id: priceSlider
                         min: root.ranges["min"]["price"]
                         max: root.ranges["max"]["price"]
                         step: 1
-                        orientation: 'horizontal'
                         on_value: labelPriceValue.text = "{:.0f} EUR".format(self.value)
                     UnitLabel:
                         id: labelPriceValue
                         text: "{:.0f} EUR".format(priceSlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: brandCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Brand"
-                FeatureInnerBoxLayout:
+                ParamInnerBox:
 
 
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: osCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Operating system"
-                FeatureInnerBoxLayout:
+                ParamInnerBox:
 
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: memoryCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Built-in memory"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: memoryOperator
-                    Slider:
+                    ParamSlider:
                         id: memorySlider
                         min: root.ranges["min"]["memory"]
                         max: root.ranges["max"]["memory"]
                         step: 1
-                        orientation: 'horizontal'
                         on_value: labelMemoryValue.text = "{:.0f} GB".format(self.value)
                     UnitLabel:
                         id: labelMemoryValue
                         text: "{:.0f} GB".format(memorySlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: ramCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "RAM Memory"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: ramOperator
-                    Slider:
+                    ParamSlider:
                         id: ramSlider
                         min: root.ranges["min"]["ram"]
                         max: root.ranges["max"]["ram"]
                         step: 1
-                        orientation: 'horizontal'
                         on_value: labelRAMValue.text = "{:.0f} GB".format(self.value)
                     UnitLabel:
                         id: labelRAMValue
                         text: "{:.0f} GB".format(ramSlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: cpuCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "CPU"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: cpuOperator
-                    Slider:
+                    ParamSlider:
                         id: cpuSlider
                         min: root.ranges["min"]["cpu"]
                         max: root.ranges["max"]["cpu"]
                         step: .1
-                        orientation: 'horizontal'
                         on_value: labelCPUValue.text = "{:.2f} ".format(self.value)
                     UnitLabel:
                         id: labelCPUValue
@@ -150,96 +149,92 @@ MyScreenManager:
                         values: 'GHz', 'nm'
                         size_hint_x: .2
                         on_value:
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: cameraCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Camera"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: cameraOperator
-                    Slider:
+                    ParamSlider:
                         id: cameraSlider
                         min: root.ranges["min"]["camera"]
                         max: root.ranges["max"]["camera"]
                         step: .1
-                        orientation: 'horizontal'
                         on_value: labelCameraValue.text = "{:.1f} mpix".format(self.value)
                     UnitLabel:
                         id: labelCameraValue
                         text: "{:.1f} mpix".format(cameraSlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: weightCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Weight"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: weightOperator
-                    Slider:
+                    ParamSlider:
                         id: weightSlider
                         min: root.ranges["min"]["weight"]
                         max: root.ranges["max"]["weight"]
                         step: 1
-                        orientation: 'horizontal'
                         on_value: labelWeightValue.text = "{:.0f} g".format(self.value)
                     UnitLabel:
                         id: labelWeightValue
                         text: "{:.0f} g".format(weightSlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: batteryCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Battery"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: batteryOperator
-                    Slider:
+                    ParamSlider:
                         id: batterySlider
                         min: root.ranges["min"]["battery"]
                         max: root.ranges["max"]["battery"]
                         step: 1
-                        orientation: 'horizontal'
                         on_value: labelBatteryValue.text = "{:.0f} mAh".format(self.value)
                     UnitLabel:
                         id: labelBatteryValue
                         text: "{:.0f} mAh".format(batterySlider.value)
-            FeatureBoxLayout:
-                FeatureCheckBox:
+            ParamBox:
+                ParamCheckBox:
                     id: diagonalCheckbox
-                FeatureLabel:
+                ParamLabel:
                     text: "Screen Diagonal"
-                FeatureInnerBoxLayout:
-                    QuantativeSpinner:
+                ParamInnerBox:
+                    ParamSpinner:
                         id: diagonalOperator
-                    Slider:
+                    ParamSlider:
                         id: diagonalSlider
                         min: root.ranges["min"]["diagonal"]
                         max: root.ranges["max"]["diagonal"]
                         step: .1
-                        orientation: 'horizontal'
                         on_value: labelDiagonalValue.text = "{:.1f} cm".format(self.value)
                     UnitLabel:
                         id: labelDiagonalValue
                         text: "{:.1f} cm".format(diagonalSlider.value)
             BoxLayout:
                 orientation: "horizontal"
-                GroupBoxLayout:
+                GroupBox:
                     CheckBox:
                         id: sdCheckbox
                     Label:
                         text: "SD Slot"
-                GroupBoxLayout:
+                GroupBox:
                     CheckBox:
                         id: bluetoothCheckbox
                     Label:
                         text: "Bluetooth"
-                GroupBoxLayout:
+                GroupBox:
                     CheckBox:
                         id: gpsCheckbox
                     Label:
                         text: "GPS"
-                GroupBoxLayout:
+                GroupBox:
                     CheckBox:
                         id: wifiCheckbox
                     Label:

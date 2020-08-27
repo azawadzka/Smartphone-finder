@@ -14,9 +14,9 @@ import clips_interface
 database = clips_interface.DataBase()
 
 
-class ClickableBoxLayout(BoxLayout):
+class ClickableBox(BoxLayout):
 
-    def widget_clicked(self, touch):
+    def box_clicked(self, touch):
         if self.y < touch.y < self.y + self.height and\
                 self.x + 100 < touch.x < self.x + self.width:
             return True
@@ -24,7 +24,7 @@ class ClickableBoxLayout(BoxLayout):
 
     def on_touch_down(self, touch):
         super(BoxLayout, self).on_touch_down(touch)
-        if self.widget_clicked(touch):
+        if self.box_clicked(touch):
             for child in self.children:
                 if isinstance(child, CheckBox):
                     child.active = True
@@ -98,7 +98,6 @@ class ResultsScreen(Screen):
         self.manager.current = "params"
 
     def generate_result(self):
-        print("Generate result")
         for i in range(100):
             self.ids.space_for_result.add_widget(Button(text="Hello", size_hint_y=None, height=100))
 
