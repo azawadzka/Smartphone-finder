@@ -85,3 +85,10 @@ class SmartphonesApp(App):
     def build(self):
         view = Builder.load_file("smartphones.kv")
         return view
+
+
+if __name__ == "__main__":
+    app = SmartphonesApp()
+    app.run()
+
+

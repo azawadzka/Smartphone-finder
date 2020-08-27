@@ -4,8 +4,8 @@ import clips
 import pickle
 import pandas as pd
 
-path_to_data_clean_pickle = 'Projects\smartphones\\application\data_clean.pickle'
-path_to_smartphones_clp = 'Projects\smartphones\\application\\filtering_rules.clp'
+path_to_data_clean_pickle = 'data_clean.pickle'
+path_to_smartphones_clp = 'filtering_rules.clp'
 
 class DataBase:
 
