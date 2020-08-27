@@ -5,11 +5,29 @@ kivy.require('1.9.0')
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 import clips_interface
 
 database = clips_interface.DataBase()
+
+
+class ClickableBoxLayout(BoxLayout):
+
+    def widget_clicked(self, touch):
+        if self.y < touch.y < self.y + self.height and\
+                self.x + 100 < touch.x < self.x + self.width:
+            return True
+        return False
+
+    def on_touch_down(self, touch):
+        super(BoxLayout, self).on_touch_down(touch)
+        if self.widget_clicked(touch):
+            for child in self.children:
+                if isinstance(child, CheckBox):
+                    child.active = True
 
 
 class ParametersScreen(Screen):
@@ -20,6 +38,9 @@ class ParametersScreen(Screen):
         with open('..\data_processing\\border_values.pickle', 'rb') as handle:
             self.ranges = pickle.load(handle)
         assert self.ranges is not None
+
+    def read_touch(self, touch):
+        print(touch)
 
     def process_query(self):
         self.search()

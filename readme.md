@@ -2,11 +2,11 @@ To do:
 - ~~screen manager~~
 - droplists for OS and brand
 - results view
-- sliders ana params adjustments
+- ~~sliders and params adjustments~~
 - web scraping automatization
+- ~~checkboxes activate on any item within line~~
+- reset button
 
-Optional 
-- add reset button
 
 Visual interface with Kivy and Kivy Garden
 

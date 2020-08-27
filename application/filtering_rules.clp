@@ -272,9 +272,9 @@
   (smartphone (valid true) (brand ?brand) (model ?model) (price ?price))
   =>
   (printout t ?brand " " ?model " " ?price crlf)
-  (open "result.txt" F1 "a")
-  (printout F1 ?brand " " ?model " " ?price crlf)
-  (close F1)
+  ;(open "result.txt" F1 "a")
+  ;(printout F1 ?brand " " ?model " " ?price crlf)
+  ;(close F1)
 )
 
 
