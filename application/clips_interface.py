@@ -70,6 +70,14 @@ class DataBase:
         fact['has'] = clips.Symbol(str(value))
         fact.assertit()
 
+    def get_result(self):
+        for fact in self.env.facts():
+            d = dict(fact)
+            if 'valid' in d.keys() and d['valid'] == 'true':
+                yield d
+
+
+
 
 
 

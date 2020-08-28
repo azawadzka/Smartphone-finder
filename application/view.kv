@@ -291,6 +291,7 @@ MyScreenManager:
                 on_release:
                     root.process_query()
                     root.manager.get_screen("result").generate_result()
+                    root.manager.get_screen("result").show_result(20)
 
 
 <ResultsScreen>:

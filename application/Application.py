@@ -93,7 +93,7 @@ class ParametersScreen(Screen):
             database.put_request_binary("request_wifi", 'n')
         database.run()
         # process effect
-        database.reset()
+        #database.reset()
 
 
 class Background(BoxLayout):
@@ -118,20 +118,21 @@ class ResultBoxLayout(BoxLayout):
 
 class ResultBox(BoxLayout):
 
-    def __init__(self, napis="text", **kwargs):
+    def __init__(self, data, **kwargs):
         super(ResultBox, self).__init__(**kwargs)
         aimg = AsyncImage(
-            source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone',
-            size_hint_x=.15)
+            source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone', size_hint_x=.15)
         box = ResultBoxLayout()
-        caption = ResultCaption(text="SMARTPHONE")
+        caption = ResultCaption(text=data['brand'] + " " + data["model"])
         box.add_widget(caption)
         stacklayout = ResultStackLayout()
-        for i in range(25):
+        for x in ["operating_system", "cpu", "memory", "ram", "camera", "weight", "screen_diagonal", "battery", "price", "sd", "gps", "bluetooth", "wifi"]:
             bg = Background()
-            label = ResultLabel(text="item" + str(i))
+            label = ResultLabel(text=x + ": " + str(data[x]))
             bg.add_widget(label)
             stacklayout.add_widget(bg)
+        go = ResultLabel(text="Go to store")
+        stacklayout.add_widget(go)
         box.add_widget(stacklayout)
         self.add_widget(aimg)
         self.add_widget(box)
@@ -143,8 +144,17 @@ class ResultsScreen(Screen):
         self.manager.current = "params"
 
     def generate_result(self):
-        for i in range(10):
-            self.ids.space_for_result.add_widget(ResultBox(napis="Label"))
+        self.gen = database.get_result()
+        self.gen_exhausted = False
+
+    def show_result(self, n=10):
+        for _ in range(n):
+            try:
+                self.ids.space_for_result.add_widget(ResultBox(data=next(self.gen)))
+            except StopIteration:
+                self.gen_exhausted = True
+                break
+
 
 
 class MyScreenManager(ScreenManager):
