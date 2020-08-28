@@ -42,7 +42,7 @@ MyScreenManager:
     size: (self.minimum_width, self.minimum_height)
     canvas:
         Color:
-            rgba: 0.7, 0.7, 1, 0.5
+            rgba: 0.7, 0.7, 1, 0.3
         Rectangle:
             pos: self.pos
             size: self.size
@@ -53,9 +53,20 @@ MyScreenManager:
     orientation: "horizontal"
     spacing: 20
 
+<ResultBoxLayout>:
+    orientation: "vertical"
+    size_hint: (1, None)
+    height: self.minimum_height
+
+<ResultCaption>
+    size_hint: None, None
+    size: self.texture_size
+    font_size: 16
+    bold: True
+    padding: (20, 0)
 
 <ResultLabel>
-    size_hint: None, 1
+    size_hint: None, None
     size: self.texture_size
     font_size: 16
 

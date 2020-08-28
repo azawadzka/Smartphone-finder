@@ -21,7 +21,7 @@ database = clips_interface.DataBase()
 class ClickableBox(BoxLayout):
 
     def box_clicked(self, touch):
-        if self.y < touch.y < self.y + self.height and\
+        if self.y < touch.y < self.y + self.height and \
                 self.x + 100 < touch.x < self.x + self.width:
             return True
         return False
@@ -99,27 +99,42 @@ class ParametersScreen(Screen):
 class Background(BoxLayout):
     pass
 
+
 class ResultLabel(Label):
     pass
 
+
+class ResultCaption(Label):
+    pass
+
+
 class ResultStackLayout(StackLayout):
     pass
+
+
+class ResultBoxLayout(BoxLayout):
+    pass
+
 
 class ResultBox(BoxLayout):
 
     def __init__(self, napis="text", **kwargs):
         super(ResultBox, self).__init__(**kwargs)
-        aimg = AsyncImage(source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone', size_hint_x=.15)
-
+        aimg = AsyncImage(
+            source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone',
+            size_hint_x=.15)
+        box = ResultBoxLayout()
+        caption = ResultCaption(text="SMARTPHONE")
+        box.add_widget(caption)
         stacklayout = ResultStackLayout()
         for i in range(25):
             bg = Background()
-            label = ResultLabel(text="item" + str(i), size_hint=(None, None))
+            label = ResultLabel(text="item" + str(i))
             bg.add_widget(label)
             stacklayout.add_widget(bg)
+        box.add_widget(stacklayout)
         self.add_widget(aimg)
-        self.add_widget(stacklayout)
-
+        self.add_widget(box)
 
 
 class ResultsScreen(Screen):
@@ -145,5 +160,3 @@ class SmartphonesApp(App):
 if __name__ == "__main__":
     app = SmartphonesApp()
     app.run()
-
-
