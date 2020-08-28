@@ -36,6 +36,36 @@ MyScreenManager:
 <UnitLabel@Label>:
     size_hint_x: .3
 
+
+<Background@BoxLayout>
+    size_hint: (None, None)
+    size: (self.minimum_width, self.minimum_height)
+    canvas:
+        Color:
+            rgba: 0.7, 0.7, 1, 0.5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<ResultBox>:
+    size_hint: (1, None)
+    height: self.minimum_height
+    orientation: "horizontal"
+    spacing: 20
+
+
+<ResultLabel>
+    size_hint: None, 1
+    size: self.texture_size
+    font_size: 16
+
+<ResultStackLayout>
+    size_hint: (.85, None)
+    height: self.minimum_height
+    spacing: 5
+    padding: (20, 5)
+
+
 <ParametersScreen>:
     name: "params"
 

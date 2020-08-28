@@ -6,7 +6,11 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.stacklayout import StackLayout
 from kivy.uix.checkbox import CheckBox
+from kivy.uix.label import Label
+from kivy.uix.image import AsyncImage
+from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 import clips_interface
@@ -92,14 +96,40 @@ class ParametersScreen(Screen):
         database.reset()
 
 
+class Background(BoxLayout):
+    pass
+
+class ResultLabel(Label):
+    pass
+
+class ResultStackLayout(StackLayout):
+    pass
+
+class ResultBox(BoxLayout):
+
+    def __init__(self, napis="text", **kwargs):
+        super(ResultBox, self).__init__(**kwargs)
+        aimg = AsyncImage(source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone', size_hint_x=.15)
+
+        stacklayout = ResultStackLayout()
+        for i in range(25):
+            bg = Background()
+            label = ResultLabel(text="item" + str(i), size_hint=(None, None))
+            bg.add_widget(label)
+            stacklayout.add_widget(bg)
+        self.add_widget(aimg)
+        self.add_widget(stacklayout)
+
+
+
 class ResultsScreen(Screen):
 
     def switch_to_params(self):
         self.manager.current = "params"
 
     def generate_result(self):
-        for i in range(100):
-            self.ids.space_for_result.add_widget(Button(text="Hello", size_hint_y=None, height=100))
+        for i in range(10):
+            self.ids.space_for_result.add_widget(ResultBox(napis="Label"))
 
 
 class MyScreenManager(ScreenManager):
