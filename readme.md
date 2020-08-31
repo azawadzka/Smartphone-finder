@@ -24,4 +24,4 @@ To do:
 - reset button impl.
 - results view show criteria
 - result item format + web scraping for image
-- processor unit choice
+- CPU unit choice
