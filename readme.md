@@ -9,6 +9,7 @@ Expert system with Clips and ClipsPy
 Data serialization with Pickle 
 
 Views as of 31.08.2020
+
 <img src="resources/img1.png" width=400>
 <img src="resources/img2.png" width=400>
 
