@@ -13,21 +13,24 @@ from bs4 import BeautifulSoup
 
 smartphone_links_list = []
 smartphones = []
-brands = ["apple", "samsung", "huawei", "newlife", "honor", "xiaomi", "sony", "motorola", "realme", "oppo", "alcatel", "crosscall", "nokia", "oneplus", "tcl", "bq", "gigaset", "palm", "lg", "hammer", "asus", "meizu", "weimei", "vsmart", "moto", "lenovo"]
+brands = ["apple", "samsung", "huawei", "newlife", "honor", "xiaomi", "sony", "motorola", "realme", "oppo", "alcatel",
+          "crosscall", "nokia", "oneplus", "tcl", "bq", "gigaset", "palm", "lg", "hammer", "asus", "meizu", "weimei",
+          "vsmart", "moto", "lenovo"]
 
 i = 1
-while True: # indefinite iteration
+while True:  # indefinite iteration
     page = requests.get("https://www.mediamarkt.es/es/category/_smartphones-701189.html?page=" + str(i))
     soup = BeautifulSoup(page.content, 'html.parser')
     listing = soup.find(id="category")
     items = listing.find_all(class_='to-details button block arrow clickable')
 
-    if len(items) == 0: break
-    else: i += 1
+    if len(items) == 0:
+        break
+    else:
+        i += 1
 
     links_list = [item.get('data-clickable-href') for item in items]
     smartphone_links_list.extend(links_list)
-
 
 for link in smartphone_links_list:
     print(link)
@@ -38,7 +41,8 @@ for link in smartphone_links_list:
     # dd = description
     dts = section.find_all("dt")
     dds = section.find_all("dd")
-    dts_list = [str(item.string) for item in dts]  # str() added to convert a custom soup datatype into one that pickle can handle.
+    dts_list = [str(item.string) for item in
+                dts]  # str() added to convert a custom soup datatype into one that pickle can handle.
     dds_list = [str(item.string) for item in dds]
 
     # brand
@@ -63,13 +67,13 @@ for link in smartphone_links_list:
     dds_list.append(link)
 
     new_dict = dict(zip(dts_list, dds_list))
-    assert('Marca' in new_dict.keys())
-    assert(new_dict['Marca'] is not None)
-    assert(new_dict['Precio'] is not None)
+    assert ('Marca' in new_dict.keys())
+    assert (new_dict['Marca'] is not None)
+    assert (new_dict['Precio'] is not None)
 
     smartphones.append(new_dict)
 
 print(len(smartphones))
 
 with open('data_raw.pickle', 'wb') as handle:
-    pickle.dump(smartphones, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(smartphones, handle, protocol=pickle.DEFAULT_PROTOCOL)

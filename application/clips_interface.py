@@ -7,6 +7,7 @@ import pandas as pd
 path_to_data_clean_pickle = 'data_clean.pickle'
 path_to_smartphones_clp = 'filtering_rules.clp'
 
+
 class DataBase:
 
     def __init__(self):
@@ -72,16 +73,6 @@ class DataBase:
 
     def get_result(self):
         for fact in self.env.facts():
-            d = dict(fact)
-            if 'valid' in d.keys() and d['valid'] == 'true':
-                yield d
-
-
-
-
-
-
-
-
-
-
+            item = dict(fact)
+            if 'valid' in item.keys() and item['valid'] == 'true':
+                yield item

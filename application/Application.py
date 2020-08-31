@@ -1,17 +1,16 @@
 import pickle
 import kivy
-
 kivy.require('1.9.0')
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.stacklayout import StackLayout
+from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
-from kivy.uix.label import Label
 from kivy.uix.image import AsyncImage
-from kivy.uix.widget import Widget
+from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.stacklayout import StackLayout
+from kivy.uix.widget import Widget
 
 import clips_interface
 
@@ -93,7 +92,7 @@ class ParametersScreen(Screen):
             database.put_request_binary("request_wifi", 'n')
         database.run()
         # process effect
-        #database.reset()
+        # database.reset()
 
 
 class Background(BoxLayout):
@@ -121,12 +120,14 @@ class ResultBox(BoxLayout):
     def __init__(self, data, **kwargs):
         super(ResultBox, self).__init__(**kwargs)
         aimg = AsyncImage(
-            source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone', size_hint_x=.15)
+            source='https://a.allegroimg.com/s128/117e2a/087569594d68a01c40c9dbcbbb9c/P43Pro-4GB-RAM-64GB-ROM-4G-5-8inch-Smartphone',
+            size_hint_x=.15)
         box = ResultBoxLayout()
         caption = ResultCaption(text=data['brand'] + " " + data["model"])
         box.add_widget(caption)
         stacklayout = ResultStackLayout()
-        for x in ["operating_system", "cpu", "memory", "ram", "camera", "weight", "screen_diagonal", "battery", "price", "sd", "gps", "bluetooth", "wifi"]:
+        for x in ["operating_system", "cpu", "memory", "ram", "camera", "weight", "screen_diagonal", "battery", "price",
+                  "sd", "gps", "bluetooth", "wifi"]:
             bg = Background()
             label = ResultLabel(text=x + ": " + str(data[x]))
             bg.add_widget(label)
@@ -154,7 +155,6 @@ class ResultsScreen(Screen):
             except StopIteration:
                 self.gen_exhausted = True
                 break
-
 
 
 class MyScreenManager(ScreenManager):
